@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../widget/add_task_screen.dart';
 import '../widget/tasks_list.dart';
 class TaskScreen extends StatelessWidget{
-   TaskScreen({super.key});
+   const TaskScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +18,15 @@ class TaskScreen extends StatelessWidget{
                    padding: EdgeInsets.only(
                      bottom: MediaQuery.of(context).viewInsets.bottom
                    ),
-                     child: AddTaskScreen()))
+                     child: const AddTaskScreen()))
          );
         },
         backgroundColor: Colors.white,
-        child:  Icon(Icons.add,color: Colors.teal,size:40),
+        child:  const Icon(Icons.add,color: Colors.teal,size:40),
       ),
       backgroundColor: Colors.teal[400],
       body: Container(
-          padding:  EdgeInsets.only(
+          padding:  const EdgeInsets.only(
             top: 60,
             left: 20,
             right: 20,
@@ -36,7 +36,7 @@ class TaskScreen extends StatelessWidget{
             crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            children:  [
+            children:  const [
               Icon(Icons.checklist_rtl_outlined,
                 size: 35,
                 color: Colors.white,
@@ -52,23 +52,23 @@ class TaskScreen extends StatelessWidget{
               ),
             ],
           ),
-          Text(
+          const Text(
               '4 Tasks',
             style: TextStyle(
               color: Colors.white,
               fontSize: 16
             ),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Expanded(
             child: Container(
                 height: 200,
-              decoration:  BoxDecoration(
+              decoration:  const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(30)),
                 
               ),
-              child: TasksList(),
+              child: const TasksList(),
             ),
           )
         ],
