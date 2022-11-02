@@ -24,7 +24,7 @@ class TaskScreen extends StatelessWidget{
         backgroundColor: Colors.white,
         child:  const Icon(Icons.add,color: Colors.teal,size:40),
       ),
-      backgroundColor: Colors.teal[400],
+      backgroundColor: Colors.black,
       body: Container(
           padding:  const EdgeInsets.only(
             top: 60,
@@ -43,11 +43,13 @@ class TaskScreen extends StatelessWidget{
               ),
               SizedBox (width: 20),
               Text(
-                  'TO DO ✔ ',
+                  'Lets Do It 🔥',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 35,
-                  fontWeight: FontWeight.bold
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+
                 ),
               ),
             ],
@@ -55,11 +57,11 @@ class TaskScreen extends StatelessWidget{
           const Text(
               '4 Tasks',
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.orange,
               fontSize: 16
             ),
           ),
-          const SizedBox(height: 15),
+          const SizedBox(height: 20),
           Expanded(
             child: Container(
                 height: 200,
@@ -77,4 +79,3 @@ class TaskScreen extends StatelessWidget{
     );
   }
 }
-

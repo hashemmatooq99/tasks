@@ -3,41 +3,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TaskTile extends StatefulWidget {
-  @override
-  State<TaskTile> createState() => _TaskTileState();
-}
+class TaskTile extends StatelessWidget {
+ final bool isChecked ;
+ final String taskTitle ;
+ TaskTile({super.key,
+   required this.isChecked,required this.taskTitle});
 
-class _TaskTileState extends State<TaskTile> {
-  bool isChecked = false;
-
-  @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text('Shopping',style: TextStyle(
+      title: Text(taskTitle,style: TextStyle(
         decoration: isChecked? TextDecoration.lineThrough : null ,
         fontWeight: FontWeight.bold,
       ),),
-      trailing: TaskCheckBox(isChecked,
-            (bool? newValue) {
-        setState(() {
-          isChecked = newValue!;
-        });
-      }),
+      trailing: Checkbox(
+          activeColor: Colors.teal,
+          onChanged: null,
+          value: isChecked,
+          //onChanged: checkboxChange
+      )
     );
   }
 }
-
-class TaskCheckBox extends StatelessWidget {
-   final bool? checkboxState ;
-   final Function(bool?) checkboxChange;
-   TaskCheckBox(this.checkboxState, this.checkboxChange);
-  @override
-  Widget build(BuildContext context) {
-    return Checkbox(
-      activeColor: Colors.teal,
-      value: checkboxState,
-      onChanged: checkboxChange
-    );
-  }
-}
+//(bool? newValue)
+//setState(() {
+//isChecked = newValue!;
+//});
