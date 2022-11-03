@@ -21,8 +21,7 @@ class TasksList extends StatelessWidget {
                 taskTitle: taskData
                     .tasks [index].name,
                 checkBoxChange: (newValue) {
-                  //setState(() {
-                  // Provider.of<TaskData>(context).tasks [index].doneChange();
+                  taskData.updateTask(taskData.tasks[index]);
                 });
           }
           );
