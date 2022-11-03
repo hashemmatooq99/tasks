@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+import '../model/task.dart';
 import '../widget/add_task_screen.dart';
 import '../widget/tasks_list.dart';
-class TaskScreen extends StatelessWidget{
+class TaskScreen extends StatefulWidget{
    const TaskScreen({super.key});
+
+  @override
+  State<TaskScreen> createState() => _TaskScreenState();
+}
+class _TaskScreenState extends State<TaskScreen> {
+   List<Task> tasks = [
+     Task(name: 'go to shopping'),
+     Task(name: 'go to playing'),
+     Task(name: 'go to study'),
+   ];
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +29,13 @@ class TaskScreen extends StatelessWidget{
                    padding: EdgeInsets.only(
                      bottom: MediaQuery.of(context).viewInsets.bottom
                    ),
-                     child: const AddTaskScreen()))
+                     child:  AddTaskScreen((newTaskTitle) {
+                           setState(() {
+                             tasks.add(Task(name: newTaskTitle));
+                             Navigator.pop(context);
+                           });
+                         }
+                     )))
          );
         },
         backgroundColor: Colors.white,
@@ -54,8 +71,8 @@ class TaskScreen extends StatelessWidget{
               ),
             ],
           ),
-          const Text(
-              '4 Tasks',
+           Text(
+              '${tasks.length} Tasks',
             style: TextStyle(
               color: Colors.orange,
               fontSize: 16
@@ -68,9 +85,9 @@ class TaskScreen extends StatelessWidget{
               decoration:  const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(30)),
-                
+
               ),
-              child: const TasksList(),
+              child:  TasksList(tasks),
             ),
           )
         ],
