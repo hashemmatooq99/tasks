@@ -1,0 +1,1 @@
+import 'package:flutter/material.dart';import 'package:tasks/model/task.dart';class TaskData extends ChangeNotifier{  List<Task> tasks = [    Task(name: 'go to shopping'),    Task(name: 'go to playing'),    Task(name: 'go to study'),  ];  void addTasks (String newTaskTitle) {    tasks.add(Task(name: newTaskTitle));    notifyListeners();  }}

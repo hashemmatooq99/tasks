@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:tasks/model/task_data.dart';
 import '../model/task.dart';
 import '../widget/add_task_screen.dart';
 import '../widget/tasks_list.dart';
-class TaskScreen extends StatefulWidget{
-   const TaskScreen({super.key});
+import 'package:provider/provider.dart';
 
-  @override
-  State<TaskScreen> createState() => _TaskScreenState();
-}
-class _TaskScreenState extends State<TaskScreen> {
-   List<Task> tasks = [
-     Task(name: 'go to shopping'),
-     Task(name: 'go to playing'),
-     Task(name: 'go to study'),
-   ];
+class TaskScreen extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +22,6 @@ class _TaskScreenState extends State<TaskScreen> {
                      bottom: MediaQuery.of(context).viewInsets.bottom
                    ),
                      child:  AddTaskScreen((newTaskTitle) {
-                           setState(() {
-                             tasks.add(Task(name: newTaskTitle));
-                             Navigator.pop(context);
-                           });
                          }
                      )))
          );
@@ -72,7 +60,7 @@ class _TaskScreenState extends State<TaskScreen> {
             ],
           ),
            Text(
-              '${tasks.length} Tasks',
+              '${Provider.of <TaskData> (context).tasks.length} Tasks',
             style: TextStyle(
               color: Colors.orange,
               fontSize: 16
@@ -87,7 +75,7 @@ class _TaskScreenState extends State<TaskScreen> {
                 borderRadius: BorderRadius.all(Radius.circular(30)),
 
               ),
-              child:  TasksList(tasks),
+              child:  TasksList(),
             ),
           )
         ],
