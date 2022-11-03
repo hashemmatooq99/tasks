@@ -22,7 +22,7 @@ class TaskScreen extends StatelessWidget{
          );
         },
         backgroundColor: Colors.white,
-        child:  const Icon(Icons.add,color: Colors.teal,size:40),
+        child:  const Icon(Icons.add,color: Colors.black,size:40),
       ),
       backgroundColor: Colors.black,
       body: Container(
