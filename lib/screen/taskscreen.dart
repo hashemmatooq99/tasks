@@ -87,7 +87,8 @@ class _TaskScreenState extends State<TaskScreen> {
               'Welcome $uname ',
             style: TextStyle(
               color: Colors.orange,
-              fontSize: 16
+              fontSize: 16,
+              fontWeight: FontWeight.bold
             ),
           ),
           const SizedBox(height: 20),
