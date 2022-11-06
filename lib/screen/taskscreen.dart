@@ -1,11 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:tasks/model/task_data.dart';
-import '../model/task.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tasks/screen/welcomeScreen.dart';
 import '../widget/add_task_screen.dart';
 import '../widget/tasks_list.dart';
-import 'package:provider/provider.dart';
 
-class TaskScreen extends StatelessWidget{
+class TaskScreen extends StatefulWidget{
+  @override
+  State<TaskScreen> createState() => _TaskScreenState();
+}
+
+class _TaskScreenState extends State<TaskScreen> {
+  var uname;
+
+  getprefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState((){
+      uname = prefs.getString("name");
+    });
+    print('Done');
+  }
+
+  @override
+  void initState() {
+    getprefs();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +33,10 @@ class TaskScreen extends StatelessWidget{
       floatingActionButton:   FloatingActionButton(
         onPressed : (){
          showModalBottomSheet(
+           shape: RoundedRectangleBorder(
+             borderRadius: BorderRadius.vertical(top: Radius.circular(60)
+                 ,bottom: Radius.circular(60))
+           ),
            isScrollControlled: true,
              context: context,
              builder: (context) =>
@@ -41,11 +64,13 @@ class TaskScreen extends StatelessWidget{
             crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            children:  const [
-              Icon(Icons.checklist_rtl_outlined,
-                size: 35,
-                color: Colors.white,
-              ),
+            children:   [
+              FloatingActionButton(onPressed: (){
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context)=>  WelcomeScreen()));
+              },
+                backgroundColor: Colors.black,
+              child: Icon(Icons.person_add_alt_1)),
               SizedBox (width: 20),
               Text(
                   'Lets Do It 🔥',
@@ -54,13 +79,12 @@ class TaskScreen extends StatelessWidget{
                   color: Colors.white,
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
-
                 ),
               ),
             ],
           ),
            Text(
-              '${Provider.of <TaskData> (context).tasks.length} Tasks',
+              'Welcome $uname ',
             style: TextStyle(
               color: Colors.orange,
               fontSize: 16
@@ -73,7 +97,6 @@ class TaskScreen extends StatelessWidget{
               decoration:  const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(30)),
-
               ),
               child:  TasksList(),
             ),
